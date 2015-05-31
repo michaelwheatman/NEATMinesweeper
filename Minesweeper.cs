@@ -14,20 +14,16 @@ namespace MinesweeperLib {
         public int Height {get{return Board.GetLength(0);}}
         public int Width {get{return Board.GetLength(1);}}
 
-
         public MinesweeperBoard(int n, int m) {
             Board = new MinesweeperSquare[n, m];
-            
             // setup board
             ForEachSquare((i, j) => {
                 Board[i, j] = new MinesweeperSquare();
             });
             InitMines(0.2);
-            Console.WriteLine("done placing bombs");
             ForEachSquare((i, j) => {
                 Board[i, j].AdjacentMines = AdjacentMines(i, j);
             });
-            Console.WriteLine("done initializing board");
         }
 
         // place mines randomly on the board
@@ -127,7 +123,13 @@ namespace MinesweeperLib {
         }
 
         public void printBoard() {
+			String top = "\t";
+			for (var i = 0; i < Width; i++) {
+                    top+="  "+i+" ";
+                }
+			Console.Write(top+"\n");
             for (var i = 0; i < Height; i++) {
+				Console.Write(i+"\t");
                 Console.Write("|");
                 String line = "\n";
                 for (var j = 0; j < Width; j++) {
