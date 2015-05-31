@@ -81,7 +81,6 @@ namespace MinesweeperLib {
         // reveal all squares without bombs around index
         private void RevealSquaresAround(int i, int j) {
             Board[i, j].Revealed = true;
-			Console.WriteLine(Board[i,j].AdjacentMines);
             ForEachNeighbor(i, j, (x, y) => {
                 MinesweeperSquare s = Board[x, y];
                 if (!s.Mined && !s.Revealed && Board[i,j].AdjacentMines == 0) {
@@ -131,7 +130,6 @@ namespace MinesweeperLib {
             for (var i = 0; i < Height; i++) {
 				Console.Write(i+"\t");
                 Console.Write("|");
-                String line = "\n";
                 for (var j = 0; j < Width; j++) {
                     String square = "";
                     if (!Board[i, j].Revealed) {
@@ -142,7 +140,7 @@ namespace MinesweeperLib {
                     }
                     Console.Write(" " + square + " |");
                 }
-                Console.Write(line);
+                Console.WriteLine();
             }
         }
     }
