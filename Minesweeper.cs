@@ -23,11 +23,9 @@ namespace MinesweeperLib {
                 Board[i, j] = new MinesweeperSquare();
             });
             InitMines(0.2);
-            Console.WriteLine("done placing bombs");
             ForEachSquare((i, j) => {
                 Board[i, j].AdjacentMines = AdjacentMines(i, j);
             });
-            Console.WriteLine("done initializing board");
         }
 
         // place mines randomly on the board
@@ -85,7 +83,6 @@ namespace MinesweeperLib {
         // reveal all squares without bombs around index
         private void RevealSquaresAround(int i, int j) {
             Board[i, j].Revealed = true;
-			Console.WriteLine(Board[i,j].AdjacentMines);
             ForEachNeighbor(i, j, (x, y) => {
                 MinesweeperSquare s = Board[x, y];
                 if (!s.Mined && !s.Revealed && Board[i,j].AdjacentMines == 0) {
