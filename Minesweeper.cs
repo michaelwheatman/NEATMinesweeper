@@ -85,9 +85,10 @@ namespace MinesweeperLib {
         // reveal all squares without bombs around index
         private void RevealSquaresAround(int i, int j) {
             Board[i, j].Revealed = true;
+			Console.WriteLine(Board[i,j].AdjacentMines);
             ForEachNeighbor(i, j, (x, y) => {
                 MinesweeperSquare s = Board[x, y];
-                if (!s.Mined && !s.Revealed && s.AdjacentMines == 0) {
+                if (!s.Mined && !s.Revealed && Board[i,j].AdjacentMines == 0) {
                     RevealSquaresAround(x, y);
                 }
             });
@@ -149,9 +150,9 @@ namespace MinesweeperLib {
             MinesweeperBoard b = new MinesweeperBoard(10, 10);
             while (true) {
                 b.printBoard();
-                Console.Write("Enter square to click (x,y): ");
+                Console.Write("Enter square to click (x y): ");
                 String input = Console.ReadLine();
-                String[] components = input.Split(new string[] {","}, StringSplitOptions.None);
+                String[] components = input.Split(new string[] {" "}, StringSplitOptions.None);
                 int x = int.Parse(components[0]);
                 int y = int.Parse(components[1]);
                 GameStatus status = b.ClickSquare(x, y);
