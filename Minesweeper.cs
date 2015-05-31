@@ -126,7 +126,6 @@ namespace MinesweeperLib {
         public void printBoard() {
             for (var i = 0; i < Height; i++) {
                 Console.Write("|");
-                String line = "\n";
                 for (var j = 0; j < Width; j++) {
                     String square = "";
                     if (!Board[i, j].Revealed) {
@@ -137,7 +136,7 @@ namespace MinesweeperLib {
                     }
                     Console.Write(" " + square + " |");
                 }
-                Console.Write(line);
+                Console.WriteLine();
             }
         }
     }
