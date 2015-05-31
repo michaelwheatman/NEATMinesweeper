@@ -1,6 +1,7 @@
 # NEATMinesweeper
 Minesweeper implementation for testing NEAT Algorithm
 
+[This tutorial will be helpful.](http://www.nashcoding.com/2010/07/17/tutorial-evolving-neural-networks-with-sharpneat-2-part-1/)
 
 To run on OSX:
 
