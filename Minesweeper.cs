@@ -62,6 +62,17 @@ namespace MinesweeperLib {
             }
         }
 
+        // returns the number of non-mined squares you failed to reveal
+        public int EvaluateFitness() {
+            int fitness = Height*Width;
+            ForEachSquare((i, j) => {
+                if (Board[i,j].Mined == true || Board[i,j].Revealed == true) {
+                    fitness--;
+                }
+            });
+            return fitness;
+        }
+
         // check if a given index is in bounds of the board
         private bool IndexInBounds(int i, int j) {
             return i >= 0 && i < Height && j >= 0 && j < Width;
@@ -145,29 +156,29 @@ namespace MinesweeperLib {
         }
     }
 
-    class Program {
-        static void Main() {
-            MinesweeperBoard b = new MinesweeperBoard(10, 10);
-            while (true) {
-                b.printBoard();
-                Console.Write("Enter square to click (x y): ");
-                String input = Console.ReadLine();
-                String[] components = input.Split(new string[] {" "}, StringSplitOptions.None);
-                int x = int.Parse(components[0]);
-                int y = int.Parse(components[1]);
-                GameStatus status = b.ClickSquare(x, y);
-                switch (status) {
-                    case GameStatus.Exploded: {
-                        Console.WriteLine("you died");
-                        return;
-                    }
-                    case GameStatus.Won: {
-                        Console.WriteLine("you won!");
-                        return;
-                    }
-                    case GameStatus.Updated: {continue;}
-                }
-            }
-        }
-    }
+    // class Program {
+    //     static void Main() {
+    //         MinesweeperBoard b = new MinesweeperBoard(10, 10);
+    //         while (true) {
+    //             b.printBoard();
+    //             Console.Write("Enter square to click (x y): ");
+    //             String input = Console.ReadLine();
+    //             String[] components = input.Split(new string[] {" "}, StringSplitOptions.None);
+    //             int x = int.Parse(components[0]);
+    //             int y = int.Parse(components[1]);
+    //             GameStatus status = b.ClickSquare(x, y);
+    //             switch (status) {
+    //                 case GameStatus.Exploded: {
+    //                     Console.WriteLine("you died");
+    //                     return;
+    //                 }
+    //                 case GameStatus.Won: {
+    //                     Console.WriteLine("you won!");
+    //                     return;
+    //                 }
+    //                 case GameStatus.Updated: {continue;}
+    //             }
+    //         }
+    //     }
+    // }
 }
