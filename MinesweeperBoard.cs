@@ -14,6 +14,7 @@ namespace MinesweeperLib {
         public int Height {get{return Board.GetLength(0);}}
         public int Width {get{return Board.GetLength(1);}}
         private bool HasClickedOnce;
+		private Random random = new Random();
 
         public MinesweeperBoard(int n, int m) {
             Board = new MinesweeperSquare[n, m];
@@ -29,7 +30,6 @@ namespace MinesweeperLib {
         private void InitMines(double weight, int excludeX, int excludeY) {
             HasClickedOnce = true;
             int numMines = (int)(weight * Height * Width);
-            var random = new Random();
             for (var i = 0; i < numMines; i++) {
                 var x = random.Next(Width);
                 var y = random.Next(Height);
@@ -140,7 +140,7 @@ namespace MinesweeperLib {
         }
 
         public void printBoard() {
-			String top = "\t";
+			String top = "X\\Y\t";
 			for (var i = 0; i < Width; i++) {
                     top+="  "+i+" ";
                 }
@@ -150,7 +150,10 @@ namespace MinesweeperLib {
                 Console.Write("|");
                 for (var j = 0; j < Width; j++) {
                     String square = "";
-                    if (!Board[i, j].Revealed) {
+					if (Board[i,j].Mined) {
+						square = "@";
+					}
+                    else if (!Board[i, j].Revealed) {
                         square = "*";
                     }
                     else {
@@ -163,29 +166,4 @@ namespace MinesweeperLib {
         }
     }
 
-    class Program {
-        static void Main() {
-            MinesweeperBoard b = new MinesweeperBoard(10, 10);
-            while (true) {
-                b.printBoard();
-                Console.Write("Enter square to click (x y): ");
-                String input = Console.ReadLine();
-                String[] components = input.Split(new string[] {" "}, StringSplitOptions.None);
-                int x = int.Parse(components[0]);
-                int y = int.Parse(components[1]);
-                GameStatus status = b.ClickSquare(x, y);
-                switch (status) {
-                    case GameStatus.Exploded: {
-                        Console.WriteLine("you died");
-                        return;
-                    }
-                    case GameStatus.Won: {
-                        Console.WriteLine("you won!");
-                        return;
-                    }
-                    case GameStatus.Updated: {continue;}
-                }
-            }
-        }
-    }
 }
