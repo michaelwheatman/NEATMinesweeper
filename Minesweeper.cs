@@ -13,6 +13,7 @@ namespace MinesweeperLib {
         public MinesweeperSquare[,] Board {get; private set;}        
         public int Height {get{return Board.GetLength(0);}}
         public int Width {get{return Board.GetLength(1);}}
+        private bool HasClickedOnce;
 
         public MinesweeperBoard(int n, int m) {
             Board = new MinesweeperSquare[n, m];
@@ -20,26 +21,28 @@ namespace MinesweeperLib {
             ForEachSquare((i, j) => {
                 Board[i, j] = new MinesweeperSquare();
             });
-            InitMines(0.2);
-            ForEachSquare((i, j) => {
-                Board[i, j].AdjacentMines = AdjacentMines(i, j);
-            });
+            // remember if the player has clicked so you can't die on the first click
+            HasClickedOnce = false;
         }
 
         // place mines randomly on the board
-        private void InitMines(double weight) {
+        private void InitMines(double weight, int excludeX, int excludeY) {
+            HasClickedOnce = true;
             int numMines = (int)(weight * Height * Width);
             var random = new Random();
             for (var i = 0; i < numMines; i++) {
                 var x = random.Next(Width);
                 var y = random.Next(Height);
-                if (!Board[x, y].Mined) {
+                if (!Board[x, y].Mined && x != excludeX && y != excludeY) {
                     Board[x, y].Mined = true;
                 }
                 else {
                     i--;
                 }
             }
+            ForEachSquare((i, j) => {
+                Board[i, j].AdjacentMines = AdjacentMines(i, j);
+            });
         }
 
         // calculate number of bombs adjacent to a square
@@ -113,6 +116,10 @@ namespace MinesweeperLib {
 
         // click on a square
         public GameStatus ClickSquare(int i, int j) {
+            if (!HasClickedOnce) {
+                // setup the mines
+                InitMines(0.2, i, j);
+            }
             if (IndexInBounds(i, j)) {
                 if (Board[i, j].Mined) {
                     return GameStatus.Exploded;
@@ -156,29 +163,29 @@ namespace MinesweeperLib {
         }
     }
 
-    // class Program {
-    //     static void Main() {
-    //         MinesweeperBoard b = new MinesweeperBoard(10, 10);
-    //         while (true) {
-    //             b.printBoard();
-    //             Console.Write("Enter square to click (x y): ");
-    //             String input = Console.ReadLine();
-    //             String[] components = input.Split(new string[] {" "}, StringSplitOptions.None);
-    //             int x = int.Parse(components[0]);
-    //             int y = int.Parse(components[1]);
-    //             GameStatus status = b.ClickSquare(x, y);
-    //             switch (status) {
-    //                 case GameStatus.Exploded: {
-    //                     Console.WriteLine("you died");
-    //                     return;
-    //                 }
-    //                 case GameStatus.Won: {
-    //                     Console.WriteLine("you won!");
-    //                     return;
-    //                 }
-    //                 case GameStatus.Updated: {continue;}
-    //             }
-    //         }
-    //     }
-    // }
+    class Program {
+        static void Main() {
+            MinesweeperBoard b = new MinesweeperBoard(10, 10);
+            while (true) {
+                b.printBoard();
+                Console.Write("Enter square to click (x y): ");
+                String input = Console.ReadLine();
+                String[] components = input.Split(new string[] {" "}, StringSplitOptions.None);
+                int x = int.Parse(components[0]);
+                int y = int.Parse(components[1]);
+                GameStatus status = b.ClickSquare(x, y);
+                switch (status) {
+                    case GameStatus.Exploded: {
+                        Console.WriteLine("you died");
+                        return;
+                    }
+                    case GameStatus.Won: {
+                        Console.WriteLine("you won!");
+                        return;
+                    }
+                    case GameStatus.Updated: {continue;}
+                }
+            }
+        }
+    }
 }
