@@ -118,7 +118,7 @@ namespace MinesweeperLib {
         public GameStatus ClickSquare(int i, int j) {
             if (!HasClickedOnce) {
                 // setup the mines
-                InitMines(0.2, i, j);
+                InitMines(0.05, i, j);
             }
             if (IndexInBounds(i, j)) {
                 if (Board[i, j].Mined) {
@@ -139,7 +139,7 @@ namespace MinesweeperLib {
             }
         }
 
-        public void printBoard() {
+        public void PrintBoard() {
 			String top = "X\\Y\t";
 			for (var i = 0; i < Width; i++) {
                     top+="  "+i+" ";
