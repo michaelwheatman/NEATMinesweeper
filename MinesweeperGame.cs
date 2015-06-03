@@ -15,11 +15,9 @@ namespace MinesweeperLib {
 				Move nextMove = player.GetMove(b.Board);
 				int x = nextMove.X;
 				int y = nextMove.Y;
-				Console.WriteLine("Clicking: " + x + ", "+ y);
                 GameStatus status = b.ClickSquare(x, y);
 				switch (status) {
                     case GameStatus.Exploded: {
-						b.printBoard();
                         return b.EvaluateFitness();
                     }
                     case GameStatus.Won: {

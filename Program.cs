@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using log4net.Config;
 using SharpNeat.Core;
 using SharpNeat.EvolutionAlgorithms;
 using SharpNeat.Genomes.Neat;
@@ -41,6 +42,9 @@ namespace MinesweeperLib
         static void Main(string[] args)
         {
 
+			// Initialise log4net (log to console).
+            XmlConfigurator.Configure(new FileInfo("log4net.properties"));
+			
             // Experiment classes encapsulate much of the nuts and bolts of setting up a NEAT search.
             MinesweeperExperiment experiment = new MinesweeperExperiment();
 
