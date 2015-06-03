@@ -67,10 +67,10 @@ namespace MinesweeperLib {
 
         // returns the number of non-mined squares you failed to reveal
         public int EvaluateFitness() {
-            int fitness = Height*Width;
+            int fitness = 0;
             ForEachSquare((i, j) => {
                 if (Board[i,j].Mined == true || Board[i,j].Revealed == true) {
-                    fitness--;
+                    fitness++;
                 }
             });
             return fitness;
@@ -118,7 +118,7 @@ namespace MinesweeperLib {
         public GameStatus ClickSquare(int i, int j) {
             if (!HasClickedOnce) {
                 // setup the mines
-                InitMines(0.05, i, j);
+                InitMines(0.2, i, j);
             }
             if (IndexInBounds(i, j)) {
                 if (Board[i, j].Mined) {
