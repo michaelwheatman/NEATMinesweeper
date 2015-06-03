@@ -30,11 +30,11 @@ namespace MinesweeperLib {
             }
 		}
 	}
-	class Program {
-        static void Main() {
-			IPlayer player = new RandomPlayer();
-			MinesweeperGame game = new MinesweeperGame();
-			Console.WriteLine(game.play(player));
-        }
-    }
+	// class Program {
+ //        static void Main() {
+	// 		IPlayer player = new RandomPlayer();
+	// 		MinesweeperGame game = new MinesweeperGame();
+	// 		Console.WriteLine(game.play(player));
+ //        }
+ //    }
 }
