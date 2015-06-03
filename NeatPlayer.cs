@@ -24,7 +24,7 @@ namespace MinesweeperLib {
             }
 			Brain.Activate();
 			Move move = null;
-			double min = double.MaxValue;
+			double min = double.MinValue;
 			for (var i = 0; i < height; i++) {
                 for (var j = 0; j < width; j++) {
 					if (board[i, j].Revealed)
@@ -34,7 +34,7 @@ namespace MinesweeperLib {
 					if (move == null) {
 						move = new Move(i, j);
 						min = score;
-					} else if (min > score) {
+					} else if (min < score) {
 						move.X = i;
 						move.Y = j;
 						min = score;

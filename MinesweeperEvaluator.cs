@@ -54,7 +54,7 @@ namespace MinesweeperLib {
         }
 
         /// <summary>
-        /// Evaluate the provided IBlackBox against the random tic-tac-toe player and return its fitness score.
+        /// Evaluate the provided IBlackBox against the random minesweeper player and return its fitness score.
         /// </summary>
         public FitnessInfo Evaluate(IBlackBox box)
         {
