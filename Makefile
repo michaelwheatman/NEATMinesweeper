@@ -1,5 +1,7 @@
+common = IPlayer.cs MinesweeperEvaluator.cs MinesweeperExperiment.cs MinesweeperSquare.cs NeatPlayer.cs RandomPlayer.cs MinesweeperBoard.cs MinesweeperGame.cs Move.cs SimpleNeatExperiment.cs
+
 evolver: *.cs
-	mcs *.cs -main:MinesweeperEvolver -r:SharpNeatLib.dll -r:SharpNeatDomains.dll -r:log4net.dll -out:Evolver.exe
+	mcs $(common) MinesweeperEvolver.cs -r:SharpNeatLib.dll -r:SharpNeatDomains.dll -r:log4net.dll -out:Evolver.exe
 
 random: *.cs
-	mcs *.cs -main:PlayRandom -r:SharpNeatLib.dll -r:SharpNeatDomains.dll -r:log4net.dll -out:Random.exe
+	mcs $(common) PlayRandom.cs -r:SharpNeatLib.dll -r:SharpNeatDomains.dll -r:log4net.dll -out:Random.exe
