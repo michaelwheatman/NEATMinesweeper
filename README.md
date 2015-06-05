@@ -8,5 +8,10 @@ Minesweeper implementation for testing NEAT Algorithm
 To run on OS X:
 
 - [Get Mono](http://www.mono-project.com/download/)
-- Compile: `mcs -r:SharpNeatLib.dll -r:SharpNeatDomains.dll *.cs`
-- Run .exe: `mono Minesweeper.exe`
+- Compile: `make random`
+- Compile: `make evolver`
+- Compile: `make ai`
+- Run the neural network `mono Evolver.exe`
+- Press `Enter` to end the evolver when the fitness has stabilized.
+- To run Random Player `mono Random.exe`
+- To run Evolved Player `mono AI.exe minesweeper_champion.xml`
