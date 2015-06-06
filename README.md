@@ -116,6 +116,7 @@ We settled on the complexity threshold via trial and error.
 	</Root>
 
 ## Original Hypothesis
+We know from playing Minesweeper outselves that it is possible to build a Neural Network that can play Minesweeper. After all, human brains are just very large neural networks. Additionally, we know that it is possible to build a AI solver for Minesweeper that works with a high degree of success. We thus originally hypothesized that our evolved solver would be better than a random player. We hoped that it could perform as well as a deterministic approach.
 ### Compared To Random
 To test our evolved player, we had it and a random player attempt 100 randomly generated boards. The evolved player attained an average fitness of 18.31, which means that it found 13 unmined squares before losing on average. The random player had an average fitness of 13.99, which means that it found 9 squares on average before losing on average.
 This means that our evolved player performed 30.9% better than random.
