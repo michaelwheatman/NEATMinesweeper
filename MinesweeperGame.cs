@@ -15,6 +15,7 @@ namespace MinesweeperLib {
 
 		public int play(IPlayer player, bool printBoard) {
 			MinesweeperBoard b = new MinesweeperBoard(5, 5);
+            string fitnessEvaluation = "clicks";
             while (true) {
 				Move nextMove = player.GetMove(b.Board);
 				int x = nextMove.X;
@@ -25,10 +26,10 @@ namespace MinesweeperLib {
                 }
 				switch (status) {
                     case GameStatus.Exploded: {
-                        return b.EvaluateFitness();
+                        return b.EvaluateFitness(fitnessEvaluation);
                     }
                     case GameStatus.Won: {
-                        return b.EvaluateFitness();
+                        return b.EvaluateFitness(fitnessEvaluation);
                     }
                     case GameStatus.Updated: {continue;}
                 }

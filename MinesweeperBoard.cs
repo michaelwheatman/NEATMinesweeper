@@ -15,6 +15,7 @@ namespace MinesweeperLib {
         public int Width {get{return Board.GetLength(1);}}
         private bool HasClickedOnce;
 		private Random random = new Random();
+        private int Clicks {get;set;}
 
         public MinesweeperBoard(int n, int m) {
             Board = new MinesweeperSquare[n, m];
@@ -23,12 +24,14 @@ namespace MinesweeperLib {
                 Board[i, j] = new MinesweeperSquare();
             });
             // remember if the player has clicked so you can't die on the first click
+            Clicks = 0;
             HasClickedOnce = false;
         }
 
         // place mines randomly on the board
         private void InitMines(double weight, int excludeX, int excludeY) {
             HasClickedOnce = true;
+            Clicks++;
             int numMines = (int)(weight * Height * Width);
             for (var i = 0; i < numMines; i++) {
                 var x = random.Next(Width);
@@ -65,8 +68,31 @@ namespace MinesweeperLib {
             }
         }
 
+        public int EvaluateFitness(string evaluationType){
+            if (evaluationType == "clicks"){
+                return Clicks;
+            } else if (evaluationType == "minimizing") {
+                return EvaluateFitnessMinimizing();
+            } else {
+                return EvaluateFitnessMaximizing();
+            }
+        }
+
         // returns the number of non-mined squares you failed to reveal
-        public int EvaluateFitness() {
+        // fitness of 0 is best
+        public int EvaluateFitnessMinimizing() {
+            int fitness = Height*Width;
+            ForEachSquare((i, j) => {
+                if (Board[i,j].Mined == true || Board[i,j].Revealed == true) {
+                    fitness--;
+                }
+            });
+            return fitness;
+        }
+
+        // returns the number of non-mined squares you failed to reveal
+        // higher fitness is better
+        public int EvaluateFitnessMaximizing() {
             int fitness = 0;
             ForEachSquare((i, j) => {
                 if (Board[i,j].Mined == true || Board[i,j].Revealed == true) {
@@ -116,7 +142,7 @@ namespace MinesweeperLib {
 
         // click on a square
         public GameStatus ClickSquare(int i, int j) {
-            if (!HasClickedOnce) {
+            if (!HasClickedOnce && Clicks == 0) {
                 // setup the mines
                 InitMines(0.2, i, j);
             }
@@ -125,6 +151,9 @@ namespace MinesweeperLib {
                     return GameStatus.Exploded;
                 }
                 else {
+                    if (!Board[i,j].Revealed){
+                        Clicks++;
+                    }
                     RevealSquaresAround(i, j);
                     if (PlayerDidWin()) {
                         return GameStatus.Won;
