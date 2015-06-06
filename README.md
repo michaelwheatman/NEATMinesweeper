@@ -1,11 +1,13 @@
 # NEATMinesweeper
-## Michael Wheatman, Brian Charous, David Pickart, and Oliver Heywood
+by Michael Wheatman, Brian Charous, David Pickart, and Oliver Heywood
+
 ## Evolutionary Computation and Artificial Life Final Project
-Minesweeper implementation for testing NEAT Algorithm
+Neural Network based Minesweeper player.
 
 ## Goal
-Our goal in this project is to create a neural netwo
+Our goal in this project is to create a neural network based minesweeper player. The player should be able to outperform a random player.
 ## Description of Evolutionary Algorithm
+We decided to use the NEAT algorithm. NEAT stands for Neuroevolution of Augmenting Topologies. The algorithm works by evolving artificial neural networks by evolving both the structure and weighting parameters of the network. The process of evolving the networks strikes a balance between finding individuals with the best fitness and maintaining diversity.
 ### Representation and Initialization
 We represent our evolved player as a neural network with 25 inputs and 25 outputs. The minesweeper board is a 5 x 5 grid, so each input and output of the neural network corresponds to a position on the board. The network accepts the current board state and returns a list of values for board positions. The player than clicks the unclicked cell with the highest value.  
 ### Parameters
@@ -14,7 +16,7 @@ We store the best neural network as an xml file called minesweeper_champion.xml.
 ### How We Chose Parameters
 We chose the grid size for two reasons. For one, five by five is the smallest grid that remains at least somewhat interesting. Additionally, a five by five grid is required to analyze with certainty if a square is able to be clicked.
 We settled on the complexity threshold via trial and error.
-### The best individual
+### A Good Individual
 <!-- language: lang-xml -->
 	<Root>
 	  <ActivationFunctions>
@@ -120,12 +122,24 @@ This means that our evolved player performed 30.9% better than random.
 
 ## Thoughts on the Project
 ### How Well did we succeed
+We were successful at evolving players that were better than random. However, from research and experience, we know that there are deterministic algorithms that are able to solve minesweeper boards to a greater degree.
 ### Problems Encountered
+Our NEAT implementation seems to avoid increasing the number of hidden nodes. We attempted to address this by raising the complexity threshold but this didn't seem to have any effect.
 
+## Sources
+We used [this tutorial](http://www.nashcoding.com/2010/07/17/tutorial-evolving-neural-networks-with-sharpneat-2-part-1/): http://www.nashcoding.com/2010/07/17/tutorial-evolving-neural-networks-with-sharpneat-2-part-1/
 
-[This tutorial will be helpful.](http://www.nashcoding.com/2010/07/17/tutorial-evolving-neural-networks-with-sharpneat-2-part-1/)
+We used the [SharpNEAT](http://sharpneat.sourceforge.net/) C# Library: http://sharpneat.sourceforge.net/
 
-To run on OS X:
+We also used the following sources:
+
+Randall, T., Cowling, P., Baker, R., & Jiang, P. (2009). Using neural networks for strategy selection in real-time strategy games. In Symposium on AI &amp.
+
+[NEAT Wikipedia Page](http://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies):
+http://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies
+
+## How to Run
+On OS X:
 
 - [Get Mono](http://www.mono-project.com/download/)
 - Compile: `make random`
