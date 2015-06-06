@@ -142,7 +142,7 @@ http://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies
 ## How to Run
 On OS X:
 
-- [Get Mono](http://www.mono-project.com/download/)
+- [Get Mono](http://www.mono-project.com/download/): http://www.mono-project.com/download/
 - Compile: `make random`
 - Compile: `make evolver`
 - Compile: `make ai`
