@@ -5,6 +5,6 @@ class RandomPlayerProgram {
     static void Main(string[] args) {
         IPlayer player = new RandomPlayer();
         MinesweeperGame game = new MinesweeperGame();
-        Console.WriteLine(game.play(player, true));
+        Console.WriteLine(game.play(player, false));
     }
 }

@@ -39,7 +39,7 @@ class AIProgram {
         IBlackBox brain = prog.readFromFile(filename);
         IPlayer player = new NeatPlayer(brain);
         MinesweeperGame game = new MinesweeperGame();
-        Console.WriteLine(game.play(player, true));
+        Console.WriteLine(game.play(player, false));
         // IPlayer player = new RandomPlayer();
         // MinesweeperGame game = new MinesweeperGame();
         // Console.WriteLine(game.play(player, true));
