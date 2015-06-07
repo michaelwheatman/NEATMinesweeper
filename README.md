@@ -17,6 +17,8 @@ We store the best neural network as an xml file called minesweeper_champion.xml.
 We chose the grid size for two reasons. For one, five by five is the smallest grid that remains at least somewhat interesting. Additionally, a five by five grid is required to analyze with certainty if a square is able to be clicked.
 We settled on the complexity threshold via trial and error.
 ### A Good Individual
+View this page at github.com/michaelwheatman/NEATMinesweeper to see the xml
+Or generate an individual and view minesweeper_champion.xml in any text editor.
 <!-- language: lang-xml -->
 	<Root>
 	  <ActivationFunctions>
