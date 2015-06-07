@@ -116,11 +116,17 @@ We settled on the complexity threshold via trial and error.
 	</Root>
 
 ## Original Hypothesis
-We know from playing Minesweeper outselves that it is possible to build a Neural Network that can play Minesweeper. After all, human brains are just very large neural networks. Additionally, we know that it is possible to build a AI solver for Minesweeper that works with a high degree of success. We thus originally hypothesized that our evolved solver would be better than a random player. We hoped that it could perform as well as a deterministic approach.
+We know from playing Minesweeper ourselves that it is possible to build a Neural Network that can play Minesweeper. After all, human brains are just very large neural networks. Additionally, we know that it is possible to build a AI solver for Minesweeper that works with a high degree of success. We thus originally hypothesized that our evolved solver would be better than a random player. We hoped that it could perform as well as a deterministic approach.
 ### Compared To Random
-To test our evolved player, we had it and a random player attempt 100 randomly generated boards. Using a fitness evaluation based on the number of squares revealed, the evolved player attained an average fitness of 18.31, which means that it found 13 unmined squares before losing on average. The random player had an average fitness of 13.99, which means that it found 9 squares on average before losing on average. This means that our evolved player performed 30.9% better than random.
+To test our evolved player, we had it and a random player attempt 100 randomly generated boards with a board size of 25 cells. Using a fitness evaluation based on the number of squares revealed, the evolved player attained an average fitness of 18.31, which means that it found 13 unmined squares before losing on average. The random player had an average fitness of 13.99, which means that it found 9 squares on average before losing on average. This means that our evolved player performed 30.9% better than random.
 
-We also attempted a fitness evaluation based on the number of clicks the player makes. Using this evaluation, the evolved player averaged 6.28 clicks over 100 trials while the random player averaged 3.71 clicks. This means that out evolved player performed 69.3% better than random.
+We also attempted a fitness evaluation based on the number of clicks the player makes. Using this evaluation with a board size of 25 cells, the evolved player averaged 6.28 clicks over 100 trials while the random player averaged 3.71 clicks. This means that our evolved player performed 69.3% better than random. Using click count evaluation with a board size of 100 cells, the evolved player averaged 4.94 clicks over 100 trials while the random player averaged 3.08 clicks. This means that out evolved player performed 60.4% better than random.
+
+| Board Size| Fitness Eval Type | Random | Evolved | Evolved Better Than Random By | 
+| ----------|-------------------| -------|---------|-------------------|
+| 25 Cells  | Squares Revealed  | 13.99  | 18.31   | 30.9%             |
+| 25 Cells  | Clicks            | 3.71   | 6.28    | 69.3%             |
+| 100 Cells | Clicks            | 3.08   | 4.94    | 60.4%             |
 
 ## Thoughts on the Project
 ### How Well did we succeed
@@ -144,10 +150,10 @@ http://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies
 On OS X:
 
 - [Get Mono](http://www.mono-project.com/download/): http://www.mono-project.com/download/
-- Compile: `make random`
-- Compile: `make evolver`
-- Compile: `make ai`
-- Run the neural network `mono Evolver.exe`
+- Compile: `make`
+- Run the neural network `mono Evolver.exe <board size>`
 - Press `Enter` to end the evolver when the fitness has stabilized.
-- To run Random Player `mono Random.exe`
-- To run Evolved Player `mono AI.exe minesweeper_champion.xml`
+- To run Random Player `mono Random.exe <board size> <optional flag 't' to print boards>`
+- To run Evolved Player `mono AI.exe minesweeper_champion.xml <board size> <optional flag 't' to print boards>`
+- For more complicated analysis, you can run multiple trials, average results, change board size, etc.
+- Example of how to run multiple trials of Evolved Player on a 5x5 board and print average fitness `./aiTest.sh 5 && cat aiPlayer.txt | python3 average.py`
