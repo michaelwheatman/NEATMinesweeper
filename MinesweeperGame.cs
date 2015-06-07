@@ -2,7 +2,7 @@ using System;
 
 namespace MinesweeperLib {
     /// <summary>
-    /// Simple Minesweeper board class
+    /// Simple Minesweeper game class
     /// </summary>
     public class MinesweeperGame {
 
