@@ -150,10 +150,10 @@ http://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies
 On OS X:
 
 - [Get Mono](http://www.mono-project.com/download/): http://www.mono-project.com/download/
-- Compile: `make random`
-- Compile: `make evolver`
-- Compile: `make ai`
-- Run the neural network `mono Evolver.exe`
+- Compile: `make`
+- Run the neural network `mono Evolver.exe <board size>`
 - Press `Enter` to end the evolver when the fitness has stabilized.
-- To run Random Player `mono Random.exe`
-- To run Evolved Player `mono AI.exe minesweeper_champion.xml`
+- To run Random Player `mono Random.exe <board size> <optional flag 't' to print boards>`
+- To run Evolved Player `mono AI.exe minesweeper_champion.xml <board size> <optional flag 't' to print boards>`
+- For more complicated analysis, you can run multiple trials, average results, change board size, etc.
+- Example of how to run multiple trials of Evolved Player on a 5x5 board and print average fitness `./aiTest.sh 5 && cat aiPlayer.txt | python3 average.py`
