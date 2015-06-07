@@ -33,12 +33,19 @@ namespace MinesweeperLib
     /// </summary>
     public class MinesweeperExperiment : SimpleNeatExperiment
     {
+
+        int boardSize;
+
+        public MinesweeperExperiment(int boardSize) {
+            this.boardSize = boardSize;
+        }
+
         /// <summary>
         /// Gets the Minesweeper evaluator that scores individuals.
         /// </summary>
         public override IPhenomeEvaluator<IBlackBox> PhenomeEvaluator
         {
-            get { return new MinesweeperEvaluator(); }
+            get { return new MinesweeperEvaluator(boardSize); }
         }
 
         /// <summary>
@@ -47,7 +54,7 @@ namespace MinesweeperLib
         /// </summary>
         public override int InputCount
         {
-            get { return 25; }
+            get { return boardSize*boardSize; }
         }
 
         /// <summary>
@@ -56,7 +63,7 @@ namespace MinesweeperLib
         /// </summary>
         public override int OutputCount
         {
-            get { return 25; }
+            get { return boardSize*boardSize; }
         }
 
         /// <summary>

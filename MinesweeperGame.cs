@@ -6,7 +6,10 @@ namespace MinesweeperLib {
     /// </summary>
     public class MinesweeperGame {
 
-        public MinesweeperGame() {
+        int boardSize;
+
+        public MinesweeperGame(int boardSize) {
+            this.boardSize = boardSize;
         }
 		
         public int play(IPlayer player) {
@@ -14,7 +17,7 @@ namespace MinesweeperLib {
         }
 
 		public int play(IPlayer player, bool printBoard) {
-			MinesweeperBoard b = new MinesweeperBoard(5, 5);
+			MinesweeperBoard b = new MinesweeperBoard(boardSize, boardSize);
             string fitnessEvaluation = "clicks";
             while (true) {
 				Move nextMove = player.GetMove(b.Board);

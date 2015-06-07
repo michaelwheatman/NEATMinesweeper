@@ -30,6 +30,13 @@ namespace MinesweeperLib {
     /// </summary>
     public class MinesweeperEvaluator : IPhenomeEvaluator<IBlackBox>
     {
+
+        int boardSize;
+
+        public MinesweeperEvaluator(int boardSize) {
+            this.boardSize = boardSize;
+        }
+
         private ulong _evalCount;
         private bool _stopConditionSatisfied = false;
 
@@ -64,7 +71,7 @@ namespace MinesweeperLib {
             
             // Play 50 games
             for (int i = 0; i < 50; i++) {
-				MinesweeperGame game = new MinesweeperGame();
+				MinesweeperGame game = new MinesweeperGame(boardSize);
                 // Update the fitness score of the network
                 fitness += game.play(neatPlayer);
             }

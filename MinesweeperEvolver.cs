@@ -41,11 +41,12 @@ public class MinesweeperEvolver
     static void Main(string[] args)
     {
 
+        int boardSize = int.Parse(args[0]);
 		// Initialise log4net (log to console).
         XmlConfigurator.Configure(new FileInfo("log4net.properties"));
 		
         // Experiment classes encapsulate much of the nuts and bolts of setting up a NEAT search.
-        MinesweeperExperiment experiment = new MinesweeperExperiment();
+        MinesweeperExperiment experiment = new MinesweeperExperiment(boardSize);
 
         // Load config XML.
         XmlDocument xmlConfig = new XmlDocument();
