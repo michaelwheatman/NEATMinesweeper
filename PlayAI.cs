@@ -34,13 +34,23 @@ class AIProgram {
     } 
 
     static void Main(string[] args) {
+        if (args.Length != 2 && args.Length != 3) {
+            Console.WriteLine(String.Join(Environment.NewLine,
+                "Arguments:","evolved player xml filename",
+                "board size (must match board size used while evolving)",
+                    "(optional) print boards (supply 't' for true)"));
+            System.Environment.Exit(0);
+        }
         string filename = args[0];
         int boardSize = int.Parse(args[1]);
         AIProgram prog = new AIProgram(boardSize);
         IBlackBox brain = prog.readFromFile(filename, boardSize*boardSize);
         IPlayer player = new NeatPlayer(brain);
         MinesweeperGame game = new MinesweeperGame(boardSize);
-        // To print the baord state, change false in game.play(player,______)) to true
-        Console.WriteLine(game.play(player, false));
+        bool printBoards = false;        
+        if (args.Length == 3) {
+            printBoards = args[2] == "t";
+        }
+        Console.WriteLine(game.play(player, printBoards));
     }
 }

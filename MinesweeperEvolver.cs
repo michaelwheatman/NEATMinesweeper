@@ -40,7 +40,10 @@ public class MinesweeperEvolver
 
     static void Main(string[] args)
     {
-
+        if (args.Length != 1) {
+            Console.WriteLine("You must supply the board size as a argument");
+            System.Environment.Exit(0);
+        }
         int boardSize = int.Parse(args[0]);
 		// Initialise log4net (log to console).
         XmlConfigurator.Configure(new FileInfo("log4net.properties"));
