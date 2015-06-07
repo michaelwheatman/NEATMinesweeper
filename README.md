@@ -17,7 +17,7 @@ We store the best neural network as an xml file called minesweeper_champion.xml.
 We chose the grid size for two reasons. For one, five by five is the smallest grid that remains at least somewhat interesting. Additionally, a five by five grid is required to analyze with certainty if a square is able to be clicked.
 We settled on the complexity threshold via trial and error.
 ### A Good Individual
-View this page at github.com/michaelwheatman/NEATMinesweeper to see the xml
+View this page at github.com/michaelwheatman/NEATMinesweeper to see the xml.
 Or generate an individual and view minesweeper_champion.xml in any text editor.
 <!-- language: lang-xml -->
 	<Root>
@@ -131,7 +131,7 @@ We also attempted a fitness evaluation based on the number of clicks the player 
 | 100 Cells | Clicks            | 3.08   | 4.94    | 60.4%             |
 
 ## Thoughts on the Project
-### How Well did we succeed
+### How well did we succeed
 We were successful at evolving players that were better than random. However, from research and experience, we know that there are deterministic algorithms that are able to solve minesweeper boards to a greater degree.
 ### Problems Encountered
 Our NEAT implementation seems to avoid increasing the number of hidden nodes. We attempted to address this by raising the complexity threshold but this didn't seem to have any effect.
@@ -149,7 +149,7 @@ Randall, T., Cowling, P., Baker, R., & Jiang, P. (2009). Using neural networks f
 http://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies
 
 ## How to Run
-On OS X:
+On OS X, Linux:
 
 - [Get Mono](http://www.mono-project.com/download/): http://www.mono-project.com/download/
 - Compile: `make`
