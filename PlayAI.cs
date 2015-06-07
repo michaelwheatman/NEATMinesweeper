@@ -39,9 +39,7 @@ class AIProgram {
         IBlackBox brain = prog.readFromFile(filename);
         IPlayer player = new NeatPlayer(brain);
         MinesweeperGame game = new MinesweeperGame();
-        Console.WriteLine(game.play(player, true));
-        // IPlayer player = new RandomPlayer();
-        // MinesweeperGame game = new MinesweeperGame();
-        // Console.WriteLine(game.play(player, true));
+        // To print the baord state, change false in game.play(player,______)) to true
+        Console.WriteLine(game.play(player, false));
     }
 }

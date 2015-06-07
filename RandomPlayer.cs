@@ -1,6 +1,9 @@
 using System;
 
 namespace MinesweeperLib {
+	/// <summary>
+    /// A Player for Minesweeper that chooses the next cell randomly
+    /// </summary>
     public class RandomPlayer : IPlayer {
 		private Random random = new Random();
 		public Move GetMove(MinesweeperSquare[,] board) {

@@ -1,7 +1,8 @@
 /* ***************************************************************************
  * This file is part of the NashCoding tutorial on SharpNEAT 2.
  * 
- * Copyright 2010, Wesley Tansey (wes@nashcoding.com)
+ * Copyright 2010, Wesley Tansey (wes@nashcoding.com), 
+ *  2015, EvoComp Project Group
  * 
  * Both SharpNEAT and this tutorial are free software: you can redistribute
  * it and/or modify it under the terms of the GNU General Public License
@@ -25,8 +26,7 @@ using SharpNeat.Phenomes;
 
 namespace MinesweeperLib {
     /// <summary>
-    /// Class used to evaluate neural networks that play Tic-Tac-Toe against
-    /// random and optimal agents.
+    /// Class used to evaluate neural networks that play Minesweeper.
     /// </summary>
     public class MinesweeperEvaluator : IPhenomeEvaluator<IBlackBox>
     {
@@ -78,7 +78,7 @@ namespace MinesweeperLib {
 
         /// <summary>
         /// Reset the internal state of the evaluation scheme if any exists.
-        /// Note. The TicTacToe problem domain has no internal state. This method does nothing.
+        /// Note. The Minesweeper problem domain has no internal state. This method does nothing.
         /// </summary>
         public void Reset()
         {
